@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +9,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        Console.Clear(); // Clear the console screen
         Console.Write("Enter Roblox Username: ");
         string username = Console.ReadLine();
 
@@ -18,6 +19,9 @@ class Program
             if (userId != null)
             {
                 await GetAvatarItems(userId);
+
+                // Wait for exactly 3 minutes before closing
+                await Task.Delay(TimeSpan.FromSeconds(180));
             }
             else
             {
@@ -27,6 +31,11 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"An Error Occurred: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine("Closing application...");
+            // Optionally add a delay or other cleanup before exiting
         }
     }
 
